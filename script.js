@@ -1,31 +1,30 @@
 const form = document.getElementById("form");
-const email = form["email"].value;
 
 
 form.addEventListener("submit", e => {
     e.preventDefault();
-    if(!validEmail(email)) {
-        addError("email", "Please enter a valid email address");
-    }else{
-        removeError("email");
+    const email = form["email"].value;
+    const small = form.querySelector("small");
+
+    if(email === "") {
+        email.classList.add("error");
+        small.innerText =  "Email field cannot be blank";
+        small.style.display = 'inline-block';
+    }else if(!isValidEmail(email)){
+        email.classList.add("error");
+        small.innerText = "Email is invalid";
+        small.style.display = "inline-block";
+    }else {
+        email.classList.remove("error");
+        small.innerText = "";
+        small.style.display = "none";
     }
+
+    
 
 })
 
-function addError(field, message){
-    const formControl = form[field].parentNode;
-    formControl.classList.add("error");
-    const small = form[field].parentNode.querySelector("small");
-    small.innerText = message;
-}
-
-function removeError(field){
-    const formControl = form[field].parentNode;
-    formControl.classList.remove("error");
-}
-
-
-function validEmail(email){
+function isValidEmail(email){
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	return re.test(String(email).toLowerCase());
 }

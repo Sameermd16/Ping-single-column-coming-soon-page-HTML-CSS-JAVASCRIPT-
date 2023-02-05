@@ -54,7 +54,7 @@ p, h1{
 }
 .main_container .text h1{
     font-size: 40px;
-    font-weight: 500;
+    font-weight: 300;
 }
 .main_container .notify_box {
     width: 100%;
@@ -72,6 +72,7 @@ p, h1{
     outline: none;
     border-radius: 25px;
     font-size: 14px;
+    cursor: pointer;
 }
 .main_container .notify_box input{
     padding: 15px;
@@ -84,17 +85,27 @@ p, h1{
 .logo{
     padding-top: 50px;
 }
-.form_control small{
-    opacity: 0;
+form small{
     color: hsl(354, 100%, 66%);
-    display: block;
+    display: none;
 }
-.form_control.error small{
-    opacity: 1;
+form.error small{
+    display: inline-block;
 }
 .notify_box.error form .form_control input{
     border-color: 1px solid hsl(354, 100%, 66%);
 }
+input::placeholder{
+    color: hsl(223, 100%, 88%);
+}
+input.error::placeholder{
+    color: hsl(354, 100%, 66%);
+}
+
+
+
+
+
 @media only screen and (max-width: 768px){
     .main_container{
         width: 90%;
