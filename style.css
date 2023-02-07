@@ -63,49 +63,54 @@ p, h1{
     display: flex;
     justify-content: space-between;
     width: 100%;
+    flex: 0.7;
 }
 .main_container .notify_box button{
     color: white;
     background-color: hsl(223, 87%, 63%);
-    padding: 15px 40px;
     border: none;
     outline: none;
     border-radius: 25px;
     font-size: 14px;
     cursor: pointer;
+    display: inline-block;
+    flex: 0.3;
+    height: 72%;
 }
 .main_container .notify_box input{
     padding: 15px;
     border-radius: 25px;
     border: 1px solid hsl(0, 0%, 59%);
     outline: none;
-    width: 73%;
-    /* display: block; */
 }
 .logo{
     padding-top: 50px;
 }
-form small{
-    color: hsl(354, 100%, 66%);
-    display: none;
+.form_control small{
+    padding-left: 20px;
+    visibility: hidden;
+    color: rgba(255, 0, 0, 0.426);
 }
-form.error small{
-    display: inline-block;
+.form_control.error small{
+    visibility: visible;
 }
-.notify_box.error form .form_control input{
-    border-color: 1px solid hsl(354, 100%, 66%);
+.form_control.error input{
+    border: 2px solid rgba(255, 0, 0, 0.612);
 }
-input::placeholder{
-    color: hsl(223, 100%, 88%);
+form{
+    display: flex;
+    width: 100%;
+    gap: 10px;
 }
-input.error::placeholder{
-    color: hsl(354, 100%, 66%);
+.form_control{
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
 }
-
-
-
-
-
+.notify_box {
+    display: flex;
+    /* border: 1px solid black; */
+}
 @media only screen and (max-width: 768px){
     .main_container{
         width: 90%;

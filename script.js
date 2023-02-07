@@ -1,28 +1,42 @@
 const form = document.getElementById("form");
+const email = document.getElementById("email");
 
 
 form.addEventListener("submit", e => {
     e.preventDefault();
-    const email = form["email"].value;
-    const small = form.querySelector("small");
-
-    if(email === "") {
-        email.classList.add("error");
-        small.innerText =  "Email field cannot be blank";
-        small.style.display = 'inline-block';
-    }else if(!isValidEmail(email)){
-        email.classList.add("error");
-        small.innerText = "Email is invalid";
-        small.style.display = "inline-block";
-    }else {
-        email.classList.remove("error");
-        small.innerText = "";
-        small.style.display = "none";
-    }
-
     
+    checkInputs();
 
 })
+
+function checkInputs() {
+    const emailValue = email.value.trim();
+
+    if (emailValue === ""){
+        error(email, "Email cannot be empty")
+    }else if (!isValidEmail(emailValue)){
+        error(email, "Email is invalid");
+    }
+    else {
+        success(email);
+    }
+}
+
+function error(input, message){
+    const flowControl = input.parentElement;
+    const small = flowControl.querySelector("small");
+
+    flowControl.classList.add("error");
+    small.innerText = message;
+}
+
+function success(input){
+    const flowControl = input.parentElement;
+    const small = flowControl.querySelector("small");
+
+    flowControl.classList.remove("error");
+    small.style.display = "hidden";
+}
 
 function isValidEmail(email){
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
